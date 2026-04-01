@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "on-tertiary-fixed": "#351000",
+                        "on-secondary-container": "#4e6874",
+                        "surface-container-low": "#f2f4f7",
+                        "tertiary-container": "#833301",
+                        "surface-container-highest": "#e0e3e6",
+                        "on-surface": "#191c1e",
+                        "inverse-primary": "#abc7ff",
+                        "surface-variant": "#e0e3e6",
+                        "inverse-on-surface": "#eff1f4",
+                        "error": "#ba1a1a",
+                        "on-primary-container": "#9bbdff",
+                        "surface-container-high": "#e6e8eb",
+                        "secondary": "#48626e",
+                        "secondary-fixed-dim": "#afcbd8",
+                        "on-secondary-fixed-variant": "#304a55",
+                        "secondary-container": "#cbe7f5",
+                        "primary-fixed": "#d7e2ff",
+                        "surface-container-lowest": "#ffffff",
+                        "on-primary-fixed": "#001b3f",
+                        "on-tertiary": "#ffffff",
+                        "on-secondary": "#ffffff",
+                        "surface-tint": "#255dad",
+                        "background": "#f7f9fc",
+                        "outline": "#737783",
+                        "on-error": "#ffffff",
+                        "tertiary": "#5f2200",
+                        "surface": "#f7f9fc",
+                        "on-background": "#191c1e",
+                        "on-error-container": "#93000a",
+                        "on-tertiary-container": "#ffa77e",
+                        "primary-fixed-dim": "#abc7ff",
+                        "tertiary-fixed-dim": "#ffb694",
+                        "surface-container": "#eceef1",
+                        "on-tertiary-fixed-variant": "#7b2f00",
+                        "tertiary-fixed": "#ffdbcc",
+                        "error-container": "#ffdad6",
+                        "on-secondary-fixed": "#021f29",
+                        "on-surface-variant": "#424751",
+                        "surface-dim": "#d8dadd",
+                        "inverse-surface": "#2d3133",
+                        "on-primary-fixed-variant": "#00458f",
+                        "on-primary": "#ffffff",
+                        "surface-bright": "#f7f9fc",
+                        "primary": "#00346f",
+                        "secondary-fixed": "#cbe7f5",
+                        "outline-variant": "#c2c6d3",
+                        "primary-container": "#004a99"
+                    },
+                    fontFamily: {
+                        "headline": ["Manrope"],
+                        "body": ["Inter"],
+                        "label": ["Inter"]
+                    },
+                    borderRadius: {"DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem"},
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .calendar-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface font-body antialiased">
+<!-- SideNavBar (The Anchor) -->
+<aside class="h-screen w-72 fixed left-0 top-0 bg-slate-50 dark:bg-slate-950 flex flex-col py-8 px-6 z-40">
+<div class="mb-10 px-4">
+<h1 class="font-['Manrope'] font-extrabold text-blue-950 dark:text-white text-2xl tracking-tighter">Executive</h1>
+<p class="text-xs text-slate-500 uppercase tracking-widest font-semibold mt-1">Mobility Portal</p>
+</div>
+<nav class="flex-1 space-y-1">
+<a class="text-slate-500 dark:text-slate-400 px-4 py-3 mb-1 flex items-center gap-3 hover:bg-slate-100 dark:hover:bg-slate-900 transition-all duration-300 hover:translate-x-1" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span class="font-medium text-sm">Overview</span>
+</a>
+<!-- Calendar is Active -->
+<a class="bg-blue-50 dark:bg-blue-900/20 text-blue-900 dark:text-blue-300 rounded-xl px-4 py-3 mb-1 flex items-center gap-3 transition-all duration-300 hover:translate-x-1" href="#">
+<span class="material-symbols-outlined" data-icon="calendar_month" style="font-variation-settings: 'FILL' 1;">calendar_month</span>
+<span class="font-medium text-sm">Schedule</span>
+</a>
+<a class="text-slate-500 dark:text-slate-400 px-4 py-3 mb-1 flex items-center gap-3 hover:bg-slate-100 dark:hover:bg-slate-900 transition-all duration-300 hover:translate-x-1" href="#">
+<span class="material-symbols-outlined" data-icon="event_note">event_note</span>
+<span class="font-medium text-sm">Reservations</span>
+</a>
+<a class="text-slate-500 dark:text-slate-400 px-4 py-3 mb-1 flex items-center gap-3 hover:bg-slate-100 dark:hover:bg-slate-900 transition-all duration-300 hover:translate-x-1" href="#">
+<span class="material-symbols-outlined" data-icon="directions_car">directions_car</span>
+<span class="font-medium text-sm">Fleet</span>
+</a>
+</nav>
+<div class="mt-auto space-y-4">
+<button class="w-full bg-gradient-to-r from-primary to-primary-container text-white py-4 rounded-xl font-bold text-sm shadow-sm hover:-translate-y-0.5 transition-transform active:scale-95">
+                New Booking
+            </button>
+<div class="pt-6 border-t border-slate-200 dark:border-slate-800 space-y-1">
+<a class="text-slate-500 dark:text-slate-400 px-4 py-2 flex items-center gap-3 hover:bg-slate-100 dark:hover:bg-slate-900 transition-all text-sm" href="#">
+<span class="material-symbols-outlined" data-icon="help_outline">help_outline</span>
+<span>Help Center</span>
+</a>
+<a class="text-slate-500 dark:text-slate-400 px-4 py-2 flex items-center gap-3 hover:bg-slate-100 dark:hover:bg-slate-900 transition-all text-sm" href="#">
+<span class="material-symbols-outlined" data-icon="logout">logout</span>
+<span>Sign Out</span>
+</a>
+</div>
+</div>
+</aside>
+<!-- Main Content Shell -->
+<main class="ml-72 min-h-screen">
+<!-- TopAppBar -->
+<header class="w-full sticky top-0 z-30 bg-slate-50/80 dark:bg-slate-900/80 backdrop-blur-xl shadow-sm">
+<div class="flex justify-between items-center px-8 h-20 w-full max-w-screen-2xl mx-auto">
+<div class="flex items-center gap-8">
+<div class="flex gap-6 items-center">
+<a class="text-slate-500 dark:text-slate-400 hover:text-blue-700 font-semibold tracking-tight" href="#">Dashboard</a>
+<a class="text-blue-900 dark:text-blue-400 border-b-2 border-blue-900 pb-1 font-semibold tracking-tight" href="#">Calendar</a>
+<a class="text-slate-500 dark:text-slate-400 hover:text-blue-700 font-semibold tracking-tight" href="#">My Bookings</a>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<div class="relative">
+<span class="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 material-symbols-outlined" data-icon="search">search</span>
+<input class="pl-10 pr-4 py-2 bg-surface-container-low border-none rounded-full text-sm w-64 focus:ring-2 focus:ring-primary/20" placeholder="Search bookings..." type="text"/>
+</div>
+<div class="flex items-center gap-2">
+<button class="p-2 text-slate-500 hover:bg-slate-100 rounded-lg transition-all" title="Notifications">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+<button class="p-2 text-slate-500 hover:bg-slate-100 rounded-lg transition-all" title="Settings">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+</button>
+<div class="h-8 w-[1px] bg-slate-200 mx-2"></div>
+<img alt="Executive User Profile" class="h-10 w-10 rounded-full object-cover border-2 border-white shadow-sm" data-alt="Professional portrait of a corporate executive in a crisp navy suit against a clean studio background, modern lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDIFgWEcpIBEA_halM5J3TfuZ1guphjyr5kq8od3J9KzvhGXduQYAIhzMwTLyNHMXsPR3FmvqifAp06zwq4YPholzet3D8TZuLpDaQUSdYORiOIQKxEtPQnn1HBrf7mm-Rqn0yMCQEouMkdqxy4Z_E3UARVtOtPcsSxIPYv-Sc_CyPt7xshOXBGvyUgSJ-fnIf9tFPzUL4Hvug2gd-tFpBfPM2hek8d0Y2c-QBYEiazHzeuW4FZOhdEE7CsxG7jEM3JxYExM5_5h5U"/>
+</div>
+</div>
+</div>
+</header>
+<!-- Calendar Dashboard Content -->
+<div class="p-8 max-w-screen-2xl mx-auto space-y-8">
+<!-- Hero Title Section -->
+<section class="flex justify-between items-end">
+<div>
+<h2 class="font-headline text-4xl font-extrabold tracking-tight text-primary">Fleet Schedule</h2>
+<p class="text-on-surface-variant mt-2 text-lg">Managing 14 active reservations for October 2023</p>
+</div>
+<div class="flex bg-surface-container-low p-1.5 rounded-xl">
+<button class="px-6 py-2 bg-surface-container-lowest rounded-lg shadow-sm font-semibold text-primary text-sm">Month</button>
+<button class="px-6 py-2 text-slate-500 font-semibold text-sm hover:text-primary transition-colors">Week</button>
+<button class="px-6 py-2 text-slate-500 font-semibold text-sm hover:text-primary transition-colors">Day</button>
+</div>
+</section>
+<!-- Calendar Container -->
+<div class="bg-surface-container-lowest rounded-xl shadow-sm overflow-hidden flex flex-col">
+<!-- Calendar Header -->
+<div class="p-6 border-b border-surface-container-low flex justify-between items-center bg-white">
+<div class="flex items-center gap-4">
+<h3 class="text-xl font-bold font-headline">October 2023</h3>
+<div class="flex gap-1">
+<button class="p-1.5 hover:bg-surface-container-low rounded-lg transition-all">
+<span class="material-symbols-outlined text-slate-600" data-icon="chevron_left">chevron_left</span>
+</button>
+<button class="p-1.5 hover:bg-surface-container-low rounded-lg transition-all">
+<span class="material-symbols-outlined text-slate-600" data-icon="chevron_right">chevron_right</span>
+</button>
+</div>
+</div>
+<!-- Legend -->
+<div class="flex items-center gap-6">
+<div class="flex items-center gap-2">
+<span class="w-3 h-3 rounded-full bg-primary"></span>
+<span class="text-xs font-semibold text-slate-500">Confirmed</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="w-3 h-3 rounded-full bg-secondary"></span>
+<span class="text-xs font-semibold text-slate-500">In Transit</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="w-3 h-3 rounded-full bg-error"></span>
+<span class="text-xs font-semibold text-slate-500">Maintenance</span>
+</div>
+</div>
+</div>
+<!-- Calendar Weekdays -->
+<div class="calendar-grid bg-surface-container-low border-b border-surface-container-low">
+<div class="py-3 text-center text-xs font-extrabold text-slate-400 uppercase tracking-widest">Sun</div>
+<div class="py-3 text-center text-xs font-extrabold text-slate-400 uppercase tracking-widest">Mon</div>
+<div class="py-3 text-center text-xs font-extrabold text-slate-400 uppercase tracking-widest">Tue</div>
+<div class="py-3 text-center text-xs font-extrabold text-slate-400 uppercase tracking-widest">Wed</div>
+<div class="py-3 text-center text-xs font-extrabold text-slate-400 uppercase tracking-widest">Thu</div>
+<div class="py-3 text-center text-xs font-extrabold text-slate-400 uppercase tracking-widest">Fri</div>
+<div class="py-3 text-center text-xs font-extrabold text-slate-400 uppercase tracking-widest">Sat</div>
+</div>
+<!-- Calendar Body -->
+<div class="calendar-grid bg-surface-container-high/20">
+<!-- Week 1 -->
+<div class="min-h-[140px] p-2 bg-surface-container-low/30 border-r border-b border-surface-container-low text-slate-300">24</div>
+<div class="min-h-[140px] p-2 bg-surface-container-low/30 border-r border-b border-surface-container-low text-slate-300">25</div>
+<div class="min-h-[140px] p-2 bg-surface-container-low/30 border-r border-b border-surface-container-low text-slate-300">26</div>
+<div class="min-h-[140px] p-2 bg-surface-container-low/30 border-r border-b border-surface-container-low text-slate-300">27</div>
+<div class="min-h-[140px] p-2 bg-surface-container-low/30 border-r border-b border-surface-container-low text-slate-300">28</div>
+<div class="min-h-[140px] p-2 bg-surface-container-low/30 border-r border-b border-surface-container-low text-slate-300">29</div>
+<div class="min-h-[140px] p-2 border-b border-surface-container-low relative hover:bg-white transition-colors group cursor-pointer">
+<span class="text-sm font-bold text-slate-400">1</span>
+</div>
+<!-- Week 2 -->
+<div class="min-h-[140px] p-2 border-r border-b border-surface-container-low hover:bg-white transition-colors cursor-pointer group">
+<span class="text-sm font-bold text-slate-900 group-hover:text-primary">2</span>
+<div class="mt-2 space-y-1">
+<div class="bg-primary-fixed text-primary text-[10px] font-bold px-2 py-1 rounded-lg border-l-4 border-primary truncate">J. Smith • S-Class</div>
+</div>
+</div>
+<div class="min-h-[140px] p-2 border-r border-b border-surface-container-low hover:bg-white transition-colors cursor-pointer group">
+<span class="text-sm font-bold text-slate-900">3</span>
+</div>
+<div class="min-h-[140px] p-2 border-r border-b border-surface-container-low hover:bg-white transition-colors cursor-pointer group">
+<span class="text-sm font-bold text-slate-900">4</span>
+<div class="mt-2 space-y-1">
+<div class="bg-secondary-container text-on-secondary-container text-[10px] font-bold px-2 py-1 rounded-lg border-l-4 border-secondary truncate">Airport Transfer</div>
+</div>
+</div>
+<div class="min-h-[140px] p-2 border-r border-b border-surface-container-low hover:bg-white transition-colors cursor-pointer group">
+<span class="text-sm font-bold text-slate-900">5</span>
+</div>
+<div class="min-h-[140px] p-2 border-r border-b border-surface-container-low hover:bg-white transition-colors cursor-pointer group">
+<span class="text-sm font-bold text-slate-900">6</span>
+<div class="mt-2 space-y-1">
+<div class="bg-error-container text-on-error-container text-[10px] font-bold px-2 py-1 rounded-lg border-l-4 border-error truncate">G-Wagon Servicing</div>
+</div>
+</div>
+<div class="min-h-[140px] p-2 border-r border-b border-surface-container-low hover:bg-white transition-colors cursor-pointer group">
+<span class="text-sm font-bold text-slate-900">7</span>
+</div>
+<div class="min-h-[140px] p-2 border-b border-surface-container-low hover:bg-white transition-colors cursor-pointer group">
+<span class="text-sm font-bold text-slate-900">8</span>
+</div>
+<!-- Week 3 -->
+<div class="min-h-[140px] p-2 border-r border-b border-surface-container-low hover:bg-white transition-colors cursor-pointer group">
+<span class="text-sm font-bold text-slate-900">9</span>
+</div>
+<div class="min-h-[140px] p-2 border-r border-b border-surface-container-low hover:bg-white transition-colors cursor-pointer group">
+<span class="text-sm font-bold text-slate-900">10</span>
+</div>
+<div class="min-h-[140px] p-2 border-r border-b border-surface-container-low bg-primary/5 ring-2 ring-primary ring-inset z-10">
+<span class="bg-primary text-white w-7 h-7 flex items-center justify-center rounded-full text-sm font-bold mx-auto mb-1">11</span>
+<div class="mt-2 space-y-1">
+<div class="bg-primary-container text-white text-[10px] font-bold px-2 py-1 rounded-lg border-l-4 border-primary truncate shadow-sm">Board Meeting • Escalade</div>
+<div class="bg-secondary-container text-on-secondary-container text-[10px] font-bold px-2 py-1 rounded-lg border-l-4 border-secondary truncate">Dinner Service</div>
+</div>
+</div>
+<div class="min-h-[140px] p-2 border-r border-b border-surface-container-low hover:bg-white transition-colors cursor-pointer group">
+<span class="text-sm font-bold text-slate-900">12</span>
+</div>
+<div class="min-h-[140px] p-2 border-r border-b border-surface-container-low hover:bg-white transition-colors cursor-pointer group">
+<span class="text-sm font-bold text-slate-900">13</span>
+</div>
+<div class="min-h-[140px] p-2 border-r border-b border-surface-container-low hover:bg-white transition-colors cursor-pointer group">
+<span class="text-sm font-bold text-slate-900">14</span>
+</div>
+<div class="min-h-[140px] p-2 border-b border-surface-container-low hover:bg-white transition-colors cursor-pointer group">
+<span class="text-sm font-bold text-slate-900">15</span>
+</div>
+<!-- Week 4 -->
+<div class="min-h-[140px] p-2 border-r border-b border-surface-container-low hover:bg-white transition-colors cursor-pointer group">
+<span class="text-sm font-bold text-slate-900">16</span>
+</div>
+<div class="min-h-[140px] p-2 border-r border-b border-surface-container-low hover:bg-white transition-colors cursor-pointer group">
+<span class="text-sm font-bold text-slate-900">17</span>
+</div>
+<div class="min-h-[140px] p-2 border-r border-b border-surface-container-low hover:bg-white transition-colors cursor-pointer group">
+<span class="text-sm font-bold text-slate-900">18</span>
+<div class="mt-2 space-y-1">
+<div class="bg-primary-fixed text-primary text-[10px] font-bold px-2 py-1 rounded-lg border-l-4 border-primary truncate">London Hub Visit</div>
+</div>
+</div>
+<div class="min-h-[140px] p-2 border-r border-b border-surface-container-low hover:bg-white transition-colors cursor-pointer group">
+<span class="text-sm font-bold text-slate-900">19</span>
+</div>
+<div class="min-h-[140px] p-2 border-r border-b border-surface-container-low hover:bg-white transition-colors cursor-pointer group">
+<span class="text-sm font-bold text-slate-900">20</span>
+</div>
+<div class="min-h-[140px] p-2 border-r border-b border-surface-container-low hover:bg-white transition-colors cursor-pointer group">
+<span class="text-sm font-bold text-slate-900">21</span>
+</div>
+<div class="min-h-[140px] p-2 border-b border-surface-container-low hover:bg-white transition-colors cursor-pointer group">
+<span class="text-sm font-bold text-slate-900">22</span>
+</div>
+</div>
+</div>
+<!-- Detail & Action Bento Grid -->
+<div class="grid grid-cols-12 gap-8">
+<!-- Selected Date Details -->
+<div class="col-span-8 bg-white p-8 rounded-xl shadow-sm space-y-6">
+<div class="flex justify-between items-start">
+<div>
+<span class="text-xs font-bold text-primary uppercase tracking-widest bg-primary-fixed px-3 py-1 rounded-full">Active Selection</span>
+<h4 class="font-headline text-2xl font-extrabold mt-3">Wednesday, Oct 11</h4>
+</div>
+<button class="flex items-center gap-2 text-primary font-bold hover:gap-3 transition-all">
+                            View Full Logistics <span class="material-symbols-outlined" data-icon="arrow_forward">arrow_forward</span>
+</button>
+</div>
+<div class="space-y-4">
+<!-- Reservation Item 1 -->
+<div class="flex items-center gap-6 p-4 rounded-xl hover:bg-surface-container-low transition-all border border-transparent hover:border-surface-container-highest cursor-pointer group">
+<div class="h-16 w-16 rounded-xl bg-slate-100 overflow-hidden shrink-0">
+<img alt="Luxury SUV" class="h-full w-full object-cover" data-alt="Sleek black luxury Cadillac Escalade parked in front of a modern glass skyscraper, cinematic lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAHK_sLvN71aCafSXydH9oYIvAuBSUP4Bt_hE_-_n1_bS2n3crknIpS785kyKxfXgqmPqSGFzj2e8EqBILynjk0Z23qrkmp0TmK7Y69PWnx3C6DEXOCAbSBYISo2uDxnauoRF7nF-g04R8TXXSLr7nqJ3snukFCj3wc-SM_ajCgbnuY69IjsXKEg7TxnQPi75yFwOxzNfc7ATeXrj_1gRzPdg1U2FWF2Q53DwZ0j0qtJXexJta00MQM6mo4PBENYNtOxhiTAXtmElk"/>
+</div>
+<div class="flex-1">
+<div class="flex justify-between">
+<h5 class="font-bold text-slate-900">Executive Board Meeting Transport</h5>
+<span class="text-xs font-bold text-slate-400">08:00 AM - 02:00 PM</span>
+</div>
+<p class="text-sm text-slate-500">Cadillac Escalade ESV • Driver: Marcus Aurelius</p>
+</div>
+<div class="px-4 py-1.5 bg-secondary-container text-on-secondary-fixed-variant rounded-full text-xs font-bold uppercase">
+                                Confirmed
+                            </div>
+</div>
+<!-- Reservation Item 2 -->
+<div class="flex items-center gap-6 p-4 rounded-xl hover:bg-surface-container-low transition-all border border-transparent hover:border-surface-container-highest cursor-pointer group">
+<div class="h-16 w-16 rounded-xl bg-slate-100 overflow-hidden shrink-0">
+<img alt="Luxury Sedan" class="h-full w-full object-cover" data-alt="White Mercedes S-Class sedan driving through a scenic city bridge at twilight, city lights reflecting on car body" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCZWLDBEo_e_O6wTcHEdWOyeGg7PFd-92L-OD2qSkSMh5H8KVtSnGCTjXlDl1vCYoMr8DSdqH1EoTfJxOVo1y9hNWyZwjHLxev3w38fpPB07n87ep15ZTLfJOICWJ_CDEqURoukKzM9PB-Du6BmKKSU-EKpc00J9xjqOZ5LVKld1vMIssMycQtZv7iCX3bGtN9nnMb7SwZomaTRnP1bzOEwa8aG7qrMmlWJsCRmsiEMra38gE3vavpc5XiFr-bC3ZJdt_MwOMDea84"/>
+</div>
+<div class="flex-1">
+<div class="flex justify-between">
+<h5 class="font-bold text-slate-900">Private Dining Logistics</h5>
+<span class="text-xs font-bold text-slate-400">07:30 PM - 11:30 PM</span>
+</div>
+<p class="text-sm text-slate-500">Mercedes-Benz S-Class • Driver: Elena Fisher</p>
+</div>
+<div class="px-4 py-1.5 bg-primary-fixed text-primary rounded-full text-xs font-bold uppercase">
+                                Pre-Trip Check
+                            </div>
+</div>
+</div>
+</div>
+<!-- Quick Stats / Next Trip -->
+<div class="col-span-4 space-y-8">
+<!-- Glassmorphism Card -->
+<div class="relative overflow-hidden rounded-xl bg-primary p-8 text-white shadow-lg">
+<div class="absolute -right-10 -bottom-10 opacity-20 transform rotate-12">
+<span class="material-symbols-outlined text-[160px]" data-icon="directions_car">directions_car</span>
+</div>
+<div class="relative z-10">
+<span class="text-[10px] font-bold uppercase tracking-[0.2em] text-blue-200">Upcoming Highlight</span>
+<h4 class="font-headline text-2xl font-bold mt-2">VIP Airport Pickup</h4>
+<p class="text-blue-100/80 mt-1">Tomorrow, 06:30 AM</p>
+<div class="mt-8 flex items-center gap-4">
+<img alt="Driver" class="h-12 w-12 rounded-full border-2 border-white/20" data-alt="Portrait of a professional female chauffeur in uniform with a subtle confident smile, bokeh city background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBAzoyfsvISjYwXAb-ZTDy4dl6bgZBgP2yxQWo5Fa_0spMW7sMofEALlmdnugX5JCNtiCe1UPFRBD5mRw7ocGovZw2kfHxvINYxYT78GPycGFAwHE34oGKdXtBnwAZrJ4Z6ohTFMzwAlJe94uL11mFzJvYCpUp6Pd09_xm7f8lUMxDbyshLJRq8IX_VhVzr3-uWw0RSIA8UdcG2leoqu38SlPfx04zhvFMT1sQEn8uwIpskIQvOFzX5sxp0Awm4fXN4aY-dLXQiQtw"/>
+<div>
+<p class="text-sm font-bold">Chauffeur Sarah</p>
+<p class="text-xs text-blue-200">GLS 600 Maybach</p>
+</div>
+</div>
+<button class="w-full mt-6 py-3 bg-white text-primary rounded-lg font-bold text-sm shadow-xl active:scale-95 transition-all">
+                                Track Arrival
+                            </button>
+</div>
+</div>
+<!-- Fleet Availability Mini-Card -->
+<div class="bg-surface-container-high p-6 rounded-xl">
+<h4 class="font-bold text-slate-900 mb-4 flex items-center gap-2">
+<span class="material-symbols-outlined text-sm" data-icon="bar_chart">bar_chart</span>
+                            Fleet Utilization
+                        </h4>
+<div class="space-y-4">
+<div>
+<div class="flex justify-between text-xs mb-1 font-semibold">
+<span class="text-slate-500">SUV Class</span>
+<span class="text-slate-900">85%</span>
+</div>
+<div class="h-1.5 w-full bg-slate-200 rounded-full overflow-hidden">
+<div class="h-full bg-primary w-[85%] rounded-full"></div>
+</div>
+</div>
+<div>
+<div class="flex justify-between text-xs mb-1 font-semibold">
+<span class="text-slate-500">Sedan Class</span>
+<span class="text-slate-900">42%</span>
+</div>
+<div class="h-1.5 w-full bg-slate-200 rounded-full overflow-hidden">
+<div class="h-full bg-secondary w-[42%] rounded-full"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Footer Space -->
+<footer class="mt-12 py-12 px-8 border-t border-surface-container-low flex justify-between items-center text-slate-400">
+<p class="text-sm">© 2023 Executive Concierge Mobility Portal. All rights reserved.</p>
+<div class="flex gap-8 text-sm font-semibold">
+<a class="hover:text-primary transition-colors" href="#">System Status</a>
+<a class="hover:text-primary transition-colors" href="#">Privacy Protocol</a>
+<a class="hover:text-primary transition-colors" href="#">Terms of Service</a>
+</div>
+</footer>
+</main>
+</body></html>

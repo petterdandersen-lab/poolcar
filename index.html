@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Fleet Management | Executive Concierge</title>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<!-- Material Icons -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "on-surface-variant": "#424751",
+              "on-secondary-fixed-variant": "#304a55",
+              "on-secondary-container": "#4e6874",
+              "inverse-on-surface": "#eff1f4",
+              "surface-container-highest": "#e0e3e6",
+              "on-primary": "#ffffff",
+              "surface-bright": "#f7f9fc",
+              "inverse-surface": "#2d3133",
+              "outline": "#737783",
+              "surface-variant": "#e0e3e6",
+              "primary-container": "#004a99",
+              "tertiary-fixed-dim": "#ffb694",
+              "tertiary-fixed": "#ffdbcc",
+              "tertiary": "#5f2200",
+              "secondary": "#48626e",
+              "inverse-primary": "#abc7ff",
+              "on-tertiary-fixed": "#351000",
+              "tertiary-container": "#833301",
+              "primary-fixed": "#d7e2ff",
+              "on-tertiary-fixed-variant": "#7b2f00",
+              "error": "#ba1a1a",
+              "surface-tint": "#255dad",
+              "surface-container": "#eceef1",
+              "primary": "#00346f",
+              "background": "#f7f9fc",
+              "outline-variant": "#c2c6d3",
+              "secondary-container": "#cbe7f5",
+              "on-tertiary-container": "#ffa77e",
+              "surface-container-high": "#e6e8eb",
+              "surface-container-low": "#f2f4f7",
+              "surface": "#f7f9fc",
+              "on-primary-fixed": "#001b3f",
+              "on-tertiary": "#ffffff",
+              "on-primary-container": "#9bbdff",
+              "on-error": "#ffffff",
+              "on-surface": "#191c1e",
+              "on-primary-fixed-variant": "#00458f",
+              "surface-container-lowest": "#ffffff",
+              "error-container": "#ffdad6",
+              "surface-dim": "#d8dadd",
+              "on-secondary-fixed": "#021f29",
+              "on-secondary": "#ffffff",
+              "on-background": "#191c1e",
+              "secondary-fixed": "#cbe7f5",
+              "secondary-fixed-dim": "#afcbd8",
+              "on-error-container": "#93000a",
+              "primary-fixed-dim": "#abc7ff"
+            },
+            fontFamily: {
+              "headline": ["Manrope"],
+              "body": ["Inter"],
+              "label": ["Inter"]
+            },
+            borderRadius: {"DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem"},
+          },
+        },
+      }
+    </script>
+<style>
+      .material-symbols-outlined {
+        font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        display: inline-block;
+        line-height: 1;
+        text-transform: none;
+        letter-spacing: normal;
+        word-wrap: normal;
+        white-space: nowrap;
+        direction: ltr;
+      }
+      body {
+        font-family: 'Inter', sans-serif;
+        background-color: #f7f9fc;
+        color: #191c1e;
+      }
+      .font-headline { font-family: 'Manrope', sans-serif; }
+      .glass-effect {
+        background: rgba(255, 255, 255, 0.7);
+        backdrop-filter: blur(20px);
+      }
+      /* Sidebar Toggle Logic */
+      #sidebar { transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1); overflow: hidden; }
+      #main-content { transition: margin-left 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
+      .sidebar-collapsed #sidebar { width: 80px; }
+      .sidebar-collapsed #main-content { margin-left: 80px; }
+      .sidebar-collapsed .sidebar-label, 
+      .sidebar-collapsed .sidebar-branding-text,
+      .sidebar-collapsed .sidebar-footer-text { 
+        display: none; 
+      }
+      .sidebar-collapsed .sidebar-nav-item { padding-left: 0; justify-content: center; }
+      .sidebar-collapsed .sidebar-active-item { margin-left: 0; border-radius: 0; padding-left: 0; justify-content: center; }
+      .sidebar-collapsed .sidebar-branding { padding: 2rem 0; justify-content: center; }
+      .sidebar-collapsed .sidebar-cta-btn span:not(.material-symbols-outlined) { display: none; }
+      .sidebar-collapsed .sidebar-cta-btn { width: 48px; height: 48px; border-radius: 50%; padding: 0; margin: 0 auto; }
+    </style>
+</head>
+<body class="flex min-h-screen">
+<!-- SideNavBar -->
+<aside class="h-screen w-64 fixed left-0 top-0 bg-slate-100 dark:bg-slate-950 flex flex-col border-r border-slate-200/20 z-[60]" id="sidebar">
+<div class="sidebar-branding p-8 flex items-center justify-between">
+<div class="sidebar-branding-text">
+<h1 class="font-bold text-blue-900 dark:text-white text-xl tracking-tighter">Fleet Control</h1>
+<p class="text-xs text-slate-500 font-medium">Precision Management</p>
+</div>
+<button class="p-1 hover:bg-slate-200 dark:hover:bg-slate-800 rounded-lg transition-colors" onclick="document.body.classList.toggle('sidebar-collapsed')" title="Toggle Sidebar">
+<span class="material-symbols-outlined text-slate-600 dark:text-slate-400">menu_open</span>
+</button>
+</div>
+<nav class="flex-1 px-0 overflow-y-auto">
+<a class="sidebar-nav-item text-slate-600 dark:text-slate-400 py-3 pl-8 flex items-center gap-3 hover:bg-slate-200/50 transition-all duration-300" href="#" title="Overview">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-label sidebar-label">Overview</span>
+</a>
+<a class="sidebar-nav-item text-slate-600 dark:text-slate-400 py-3 pl-8 flex items-center gap-3 hover:bg-slate-200/50 transition-all duration-300" href="#" title="Live Maps">
+<span class="material-symbols-outlined">map</span>
+<span class="font-label sidebar-label">Live Maps</span>
+</a>
+<!-- ACTIVE -->
+<a class="sidebar-active-item bg-white dark:bg-slate-800 text-blue-900 dark:text-blue-100 rounded-l-full ml-4 pl-4 py-3 shadow-sm flex items-center gap-3 transition-all duration-300" href="#" title="Maintenance">
+<span class="material-symbols-outlined">build</span>
+<span class="font-label sidebar-label">Maintenance</span>
+</a>
+<a class="sidebar-nav-item text-slate-600 dark:text-slate-400 py-3 pl-8 flex items-center gap-3 hover:bg-slate-200/50 transition-all duration-300" href="#" title="User Roles">
+<span class="material-symbols-outlined">group</span>
+<span class="font-label sidebar-label">User Roles</span>
+</a>
+</nav>
+<div class="mt-auto border-t border-slate-200/20 p-4">
+<button class="sidebar-cta-btn w-full bg-gradient-to-r from-primary to-primary-container text-on-primary py-3 rounded-lg flex items-center justify-center gap-2 font-semibold shadow-sm hover:-translate-y-0.5 transition-all">
+<span class="material-symbols-outlined">add</span>
+<span>New Booking</span>
+</button>
+<div class="mt-6 flex flex-col gap-4 px-4 sidebar-footer-text">
+<a class="text-xs flex items-center gap-2 text-slate-500" href="#"><span class="material-symbols-outlined text-sm">check_circle</span> System Status</a>
+<a class="text-xs flex items-center gap-2 text-slate-500" href="#"><span class="material-symbols-outlined text-sm">help_outline</span> Help</a>
+</div>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="ml-64 flex-1 min-h-screen relative" id="main-content">
+<!-- TopAppBar -->
+<header class="w-full sticky top-0 z-50 bg-slate-50/80 dark:bg-slate-900/80 backdrop-blur-md shadow-sm dark:shadow-none">
+<div class="flex justify-between items-center px-8 py-4 max-w-screen-2xl mx-auto">
+<div class="flex items-center gap-8">
+<span class="text-2xl font-bold tracking-tighter text-blue-950 dark:text-blue-50">Executive Concierge</span>
+<div class="hidden md:flex items-center gap-6">
+<a class="text-slate-500 hover:text-blue-800 font-medium transition-colors" href="#">Dashboard</a>
+<a class="text-slate-500 hover:text-blue-800 font-medium transition-colors" href="#">Calendar</a>
+<a class="text-blue-900 border-b-2 border-blue-900 pb-1 font-medium" href="#">Fleet Management</a>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<div class="hidden lg:flex items-center bg-surface-container-low px-4 py-2 rounded-full">
+<span class="material-symbols-outlined text-slate-400 text-xl">search</span>
+<input class="bg-transparent border-none focus:ring-0 text-sm w-48 text-on-surface" placeholder="Quick search..." type="text"/>
+</div>
+<button class="bg-primary text-on-primary px-6 py-2 rounded-lg font-medium hover:bg-primary-container transition-all">Add Vehicle</button>
+<div class="flex items-center gap-2 border-l border-slate-200 ml-2 pl-4">
+<span class="material-symbols-outlined text-on-surface-variant cursor-pointer p-1 hover:bg-slate-100 rounded-lg">notifications</span>
+<span class="material-symbols-outlined text-on-surface-variant cursor-pointer p-1 hover:bg-slate-100 rounded-lg">settings</span>
+<img alt="Administrator Profile" class="w-8 h-8 rounded-full object-cover border-2 border-primary-container/20 ml-2" data-alt="close up professional headshot of a corporate fleet administrator in a modern office with glass windows" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAuxshLx241NPRv4A-zRenGw2PGywGUvJqb5qw29NsYhpElejrqOYy0lMx_-TEtfe_jy2Bkh898b5Isu0Bj0_nrKKeDUoIgBPR09Qp7xOP2O4rZn9CE1jBLECKhCHoXCLLSyh-zaCLeAuOgHKwxUjF395v8ZCWWHgEr2U2KOemdisE49GvWZ9clfh91BspKtUIgeXCpoKJDBoPOb_iZBX4sEk3NAvDFghee5aoY0u_G31pVRPBTlZiJ6uNykm8eeypm8uJOotoJwQ8"/>
+</div>
+</div>
+</div>
+</header>
+<!-- Fleet Content Canvas -->
+<div class="p-12 max-w-screen-2xl mx-auto">
+<!-- Header Section -->
+<div class="mb-12 flex justify-between items-end">
+<div>
+<h2 class="font-headline text-5xl font-extrabold text-primary tracking-tighter mb-2">Fleet Management</h2>
+<p class="text-on-surface-variant text-lg">Orchestrate your vehicle ecosystem with surgical precision.</p>
+</div>
+<div class="flex gap-4">
+<div class="bg-surface-container-low p-2 rounded-lg flex items-center gap-2">
+<button class="p-2 bg-surface-container-lowest shadow-sm rounded text-primary"><span class="material-symbols-outlined">grid_view</span></button>
+<button class="p-2 text-slate-400 hover:text-primary"><span class="material-symbols-outlined">list</span></button>
+</div>
+</div>
+</div>
+<!-- Bento Layout / Cards Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+<!-- Vehicle Card: Tesla Model Y -->
+<div class="group bg-surface-container-lowest rounded-xl overflow-hidden flex flex-col transition-all hover:translate-y-[-4px] ring-1 ring-black/[0.03]">
+<div class="relative h-64 overflow-hidden">
+<img alt="Tesla Model Y" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="side view of a sleek white Tesla Model Y parked in a minimalist high-end architectural garage with clean lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAzEzgFwJKA-C5JuHKXpfH1Z4CVrrc-_Vm1w7uodkwN6RdBW254mZ9FzhDouXLwK0MmB-4ryzI5A9NWAfW7wDiEpk9mmkfEYMSLA2t8mEpDDzfcT0Ik-u3oBZ9igxqTDuRxSgUocnMuUbZ1DkSKZ1w93H_TPq6QOvq4Jw5U93aHz2ZhYEVg9iAwHoibFGK6W2uqyRxhHBWvFCvL_6hbQkvQAm0siRFwQuKE10obbGZRxdm_fkLbl_EEk4hZWA2R9o6A7dMy0lQUcic"/>
+<div class="absolute top-4 right-4">
+<span class="px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-secondary-container text-on-secondary-fixed-variant glass-effect">Available</span>
+</div>
+</div>
+<div class="p-8 flex flex-col flex-1">
+<div class="flex justify-between items-start mb-6">
+<div>
+<h3 class="font-headline text-2xl font-bold text-on-surface">Tesla Model Y</h3>
+<p class="text-primary-container font-mono text-sm tracking-widest mt-1">EV-12345</p>
+</div>
+<div class="bg-surface-container p-2 rounded-lg">
+<span class="material-symbols-outlined text-primary">electric_car</span>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-4 mb-8">
+<div class="bg-surface-container-low p-3 rounded-lg">
+<p class="text-[10px] uppercase font-bold text-slate-400 tracking-tighter">Battery Range</p>
+<p class="text-on-surface font-semibold">330 Miles</p>
+</div>
+<div class="bg-surface-container-low p-3 rounded-lg">
+<p class="text-[10px] uppercase font-bold text-slate-400 tracking-tighter">Next Service</p>
+<p class="text-on-surface font-semibold">Dec 12, 2024</p>
+</div>
+</div>
+<div class="mt-auto flex items-center justify-between pt-6 border-t border-slate-100">
+<div class="flex gap-2">
+<button class="p-2 hover:bg-slate-100 rounded-lg text-slate-500 transition-colors" title="Edit Vehicle">
+<span class="material-symbols-outlined text-xl">edit</span>
+</button>
+<button class="p-2 hover:bg-slate-100 rounded-lg text-slate-500 transition-colors" title="Service Log">
+<span class="material-symbols-outlined text-xl">history</span>
+</button>
+</div>
+<button class="text-error font-semibold text-sm px-4 py-2 hover:bg-error-container/20 rounded-lg transition-colors">
+                                Remove
+                            </button>
+</div>
+</div>
+</div>
+<!-- Add New Vehicle Placeholder / CTA -->
+<div class="group bg-surface-container-low border-2 border-dashed border-outline-variant/30 rounded-xl flex flex-col items-center justify-center p-12 text-center transition-all hover:bg-surface-container-high cursor-pointer">
+<div class="w-16 h-16 rounded-full bg-surface-container-lowest flex items-center justify-center mb-6 shadow-sm group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-3xl text-primary">add_circle</span>
+</div>
+<h3 class="font-headline text-xl font-bold text-on-surface mb-2">Expand Your Fleet</h3>
+<p class="text-on-surface-variant text-sm max-w-[200px] mb-8">Add a premium vehicle to the executive selection.</p>
+<button class="bg-primary text-on-primary px-8 py-3 rounded-lg font-medium shadow-sm">Initialize Setup</button>
+</div>
+<!-- Secondary Metric Card -->
+<div class="bg-primary-container text-on-primary-container rounded-xl p-8 flex flex-col relative overflow-hidden">
+<div class="z-10 relative">
+<span class="material-symbols-outlined text-4xl mb-4 opacity-80">analytics</span>
+<h3 class="font-headline text-2xl font-bold mb-2">Fleet Efficiency</h3>
+<p class="text-sm opacity-70 mb-8 max-w-[180px]">Operational uptime for current quarter.</p>
+<div class="text-5xl font-extrabold mb-1 tracking-tighter">98.4%</div>
+<div class="text-xs font-bold text-on-primary tracking-widest uppercase">+2.1% from last month</div>
+</div>
+<!-- Aesthetic backdrop detail -->
+<div class="absolute -bottom-10 -right-10 w-48 h-48 bg-primary-fixed/10 rounded-full blur-3xl"></div>
+</div>
+</div>
+<!-- "Add Vehicle" Section (Editorial Form Layout) -->
+<section class="mt-24 bg-surface-container-lowest rounded-xl p-12 ring-1 ring-black/[0.03]">
+<div class="grid lg:grid-cols-12 gap-16">
+<div class="lg:col-span-4">
+<h3 class="font-headline text-3xl font-bold text-on-surface mb-4">Vehicle Intake</h3>
+<p class="text-on-surface-variant leading-relaxed">Ensure every asset in the concierge ecosystem meets the highest standards of luxury and safety.</p>
+<div class="mt-8 flex flex-col gap-6">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded bg-secondary-container flex items-center justify-center text-on-secondary-container">
+<span class="material-symbols-outlined">verified_user</span>
+</div>
+<div>
+<p class="text-sm font-bold text-on-surface">Inspection Verified</p>
+<p class="text-xs text-slate-500">Auto-trigger log for safety audits.</p>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded bg-tertiary-fixed flex items-center justify-center text-on-tertiary-fixed-variant">
+<span class="material-symbols-outlined">sync</span>
+</div>
+<div>
+<p class="text-sm font-bold text-on-surface">Real-time Sync</p>
+<p class="text-xs text-slate-500">Live GPS tracking active on save.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="lg:col-span-8">
+<form class="space-y-8">
+<div class="grid md:grid-cols-2 gap-8">
+<div class="space-y-2">
+<label class="font-label text-sm font-bold text-on-surface-variant ml-1">Vehicle Model</label>
+<input class="w-full bg-surface-container-highest border-none focus:bg-surface-container-lowest focus:ring-0 focus:border-b-2 focus:border-primary px-4 py-4 rounded-lg transition-all" placeholder="e.g. BMW i7 xDrive60" type="text"/>
+</div>
+<div class="space-y-2">
+<label class="font-label text-sm font-bold text-on-surface-variant ml-1">License Plate</label>
+<input class="w-full bg-surface-container-highest border-none focus:bg-surface-container-lowest focus:ring-0 focus:border-b-2 focus:border-primary px-4 py-4 rounded-lg transition-all" placeholder="e.g. LUX-001" type="text"/>
+</div>
+</div>
+<div class="space-y-2">
+<label class="font-label text-sm font-bold text-on-surface-variant ml-1">Vehicle Image</label>
+<div class="border-2 border-dashed border-outline-variant/30 rounded-xl p-12 text-center hover:bg-slate-50 transition-all cursor-pointer">
+<span class="material-symbols-outlined text-4xl text-slate-300 mb-2">cloud_upload</span>
+<p class="text-sm text-slate-500">Drag and drop high-resolution JPG or PNG</p>
+<p class="text-xs text-slate-400 mt-1">Recommended size: 1920x1080px</p>
+</div>
+</div>
+<div class="grid md:grid-cols-2 gap-8">
+<div class="space-y-2">
+<label class="font-label text-sm font-bold text-on-surface-variant ml-1">Initial Status</label>
+<select class="w-full bg-surface-container-highest border-none focus:bg-surface-container-lowest focus:ring-0 focus:border-b-2 focus:border-primary px-4 py-4 rounded-lg transition-all">
+<option>Available</option>
+<option>In Use</option>
+<option>Under Maintenance</option>
+</select>
+</div>
+<div class="space-y-2">
+<label class="font-label text-sm font-bold text-on-surface-variant ml-1">Assigned Garage</label>
+<select class="w-full bg-surface-container-highest border-none focus:bg-surface-container-lowest focus:ring-0 focus:border-b-2 focus:border-primary px-4 py-4 rounded-lg transition-all">
+<option>North Terminal Executive</option>
+<option>Downtown Headquarters</option>
+<option>South Side Service Hub</option>
+</select>
+</div>
+</div>
+<div class="flex justify-end gap-4 pt-4">
+<button class="px-8 py-3 text-slate-500 font-semibold hover:bg-slate-100 rounded-lg transition-all" type="button">Discard</button>
+<button class="bg-gradient-to-r from-primary to-primary-container text-on-primary px-10 py-3 rounded-lg font-bold shadow-lg hover:-translate-y-1 transition-all" type="submit">Register Asset</button>
+</div>
+</form>
+</div>
+</div>
+</section>
+</div>
+<!-- Footer -->
+<footer class="max-w-screen-2xl mx-auto px-12 py-12 border-t border-slate-200/40">
+<div class="flex flex-col md:flex-row justify-between items-center gap-6">
+<div class="flex items-center gap-2">
+<div class="w-8 h-8 bg-primary rounded flex items-center justify-center text-white font-bold text-xs">EC</div>
+<span class="font-bold text-primary">Executive Concierge</span>
+</div>
+<div class="flex gap-8 text-sm text-slate-400 font-medium">
+<a class="hover:text-primary transition-colors" href="#">Safety Protocols</a>
+<a class="hover:text-primary transition-colors" href="#">Privacy Policy</a>
+<a class="hover:text-primary transition-colors" href="#">Terms of Service</a>
+</div>
+<p class="text-xs text-slate-400">© 2024 Executive Concierge Fleet Systems. All Rights Reserved.</p>
+</div>
+</footer>
+</main>
+</body></html>
